@@ -8,12 +8,12 @@ from src.parsdantic.parser import parse
     [
         (
             {"id": 1, "names": ["name1", "name2"]},
-            {"type": "object", "title" : "test", "properties": {"id": {"type": "integer"}, "names": {"type": "array", "items": {"type": "string"}}}},
+            {"type": "object", "title" : "test", "properties": {"id": {"type": "integer"}, "names": {"type": "array", "title" : "Names", "items": {"type": "string"}}}},
             True
         ),
         (
             {"id": 1, "names": [["name1", "name2"], ["name3", "name4"]]},
-            {"type": "object", "title" : "test", "properties": {"id": {"type": "integer"}, "names": {"type": "array", "items": {"type": "array", "items": {"type": "string"}}}}},
+            {"type": "object", "title" : "test", "properties": {"id": {"type": "integer"}, "names": {"type": "array", "title" : "Names", "items": {"type": "array", "items": {"type": "string"}}}}},
             True
         ),
     ]

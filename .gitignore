@@ -13,4 +13,5 @@ wheels/
 .venv
 .env
 
-main.py
+#Test files
+dev_*
