@@ -3,7 +3,7 @@ from typing import Any
 import jsonref
 from pydantic import BaseModel, create_model
 
-from pydantizater.types.types import Types
+from src.parsdantic.types.types import Types
 
 
 def pydantize(obj: dict[str, Any]) -> type[BaseModel]:
