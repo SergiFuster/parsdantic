@@ -35,3 +35,4 @@ def parse(obj: dict[str, Any]) -> type[BaseModel]:
     
     obj = jsonref.replace_refs(obj)
     return _parse(obj["title"], obj["properties"])
+    return _parse(obj["title"], obj["properties"])

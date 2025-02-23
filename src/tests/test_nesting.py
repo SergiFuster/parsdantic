@@ -1,6 +1,6 @@
 import pytest
 
-from pydantizater.pydantizater import pydantize
+from ..parsdantic.parser import parse
 
 
 @pytest.mark.parametrize(
@@ -63,7 +63,7 @@ from pydantizater.pydantizater import pydantize
 )
 def test_nested(data, json_schema, expected):
     try:
-        pydantic_model = pydantize(json_schema)
+        pydantic_model = parse(json_schema)
         instance = pydantic_model(**data)
         pydantic_model.model_validate(instance)
         assert expected
