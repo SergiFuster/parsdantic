@@ -1,6 +1,6 @@
 import pytest
 
-from ..parsdantic.parser import parse
+from src.parsdantic.parser import parse
 
 
 @pytest.mark.parametrize(

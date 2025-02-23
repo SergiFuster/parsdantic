@@ -27,12 +27,11 @@ def parse(obj: dict[str, Any]) -> type[BaseModel]:
         """
         for k, v in obj.items():
             if v.get("properties"):
-                res = res | {title: (_parse(v["title"], v["properties"]), None)}
+                res = res | {k : (_parse(v["title"], v["properties"]), None)}
             else:
                 res = res | {k: (Types[v["type"]], None)}
 
         return create_model(title, **res)
     
     obj = jsonref.replace_refs(obj)
-    return _parse(obj["title"], obj["properties"])
     return _parse(obj["title"], obj["properties"])
