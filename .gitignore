@@ -9,6 +9,8 @@ wheels/
 #Pypi
 .pypirc
 
-# Virtual environments
+#Virtual environments
 .venv
 .env
+
+main.py

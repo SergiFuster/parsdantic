@@ -1,7 +1,4 @@
-import json
 from pprint import pp
-
-from pydantic import BaseModel
 
 from src.parsdantic.parser import parse
 
@@ -9,6 +6,7 @@ schema = {
     "$defs": {
         "Color": {
             "properties": {
+                "id" : {"title": "ID", "type": "integer"},
                 "r": {"title": "R", "type": "integer"},
                 "g": {"title": "G", "type": "integer"},
                 "b": {"title": "B", "type": "integer"},
@@ -18,13 +16,14 @@ schema = {
             "type": "object",
         },
         "Hair": {
-            "properties": {"color": {"$ref": "#/$defs/Color"}},
+            "properties": {"id" : {"title": "ID", "type": "integer"}, "color": {"$ref": "#/$defs/Color"}},
             "required": ["color"],
             "title": "Hair",
             "type": "object",
         },
     },
     "properties": {
+        "id" : {"title": "ID", "type": "integer"},
         "name": {"title": "Name", "type": "string"},
         "age": {"title": "Age", "type": "integer"},
         "hair": {"$ref": "#/$defs/Hair"},
@@ -44,5 +43,4 @@ data = {
 
 person = pydantic_model.model_validate(data)
 
-pp(person.model_json_schema())
 pp(person.model_json_schema())
