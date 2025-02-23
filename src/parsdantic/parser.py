@@ -18,9 +18,9 @@ def parse(obj: dict[str, Any]) -> type[BaseModel]:
     def _parse_list(title: str, obj: dict[str, dict[str, dict]]) -> type[BaseModel]:
         match obj.get("type"):
             case "object":
-                return _parse_object(title, obj["properties"])
+                return _parse_object(obj["title"], obj["properties"])
             case "array":
-                return List[_parse_list(title, obj["items"])]
+                return List[_parse_list(obj["title"], obj["items"])]
             case _:
                 return Types[obj["type"]]
             

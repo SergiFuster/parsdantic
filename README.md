@@ -25,48 +25,48 @@ from parsdantic.parser import parse
 
 schema = {
     "$defs": {
-        "Color": {
+        "Person": {
             "properties": {
-                "r": {"title": "R", "type": "integer"},
-                "g": {"title": "G", "type": "integer"},
-                "b": {"title": "B", "type": "integer"},
+                "id": {"title": "Id", "type": "integer"},
+                "name": {"title": "Name", "type": "string"},
+                "directions": {
+                    "items": {"type": "string"},
+                    "title": "Directions",
+                    "type": "array"
+                }
             },
-            "required": ["r", "g", "b"],
-            "title": "Color",
-            "type": "object",
-        },
-        "Hair": {
-            "properties": {"color": {"$ref": "#/$defs/Color"}},
-            "required": ["color"],
-            "title": "Hair",
-            "type": "object",
-        },
+            "required": ["id", "name", "directions"],
+            "title": "Person",
+            "type": "object"
+        }
     },
     "properties": {
-        "name": {"title": "Name", "type": "string"},
-        "age": {"title": "Age", "type": "integer"},
-        "hair": {"$ref": "#/$defs/Hair"},
+        "people": {
+            "items": {"$ref": "#/$defs/Person"},
+            "title": "People",
+            "type": "array"
+        }
     },
-    "required": ["name", "age", "hair"],
-    "title": "Person",
-    "type": "object",
+    "required": ["people"],
+    "title": "People",
+    "type": "object"
 }
 
-Person = parse(schema)
+People = parse(schema)
 
-person = Person(
-    name="John",
-    age=30,
-    hair={"color": {"r": 255, "g": 0, "b": 0}},
+instance = People(
+    people=[
+        {"id": 1, "name": "John", "directions": ["Carrer de les Corts, 1", "Barcelona"]},
+        {"id": 2, "name": "Jane", "directions": ["Carrer de les Corts, 2", "Barcelona"]},
+    ]
 )
 
-print(person) # Person(name='John', age=30, hair=Hair(color=Color(r=255, g=0, b=0)))
+print(instance) # People(people=[Person(id=1, name='John', directions=['Carrer de les Corts, 1', 'Barcelona']), Person(id=2, name='Jane', directions=['Carrer de les Corts, 2', 'Barcelona'])])
 ```
-_Note : Collections (e.g. List, Dict) and Enum are still not available._
-
+_Note: descriptions, default values, required fields, and Enum types are still not supported._
 ## Support
 You can open an issue on the [GitHub issue tracker](https://github.com/SergiFuster/parsdantic/issues).
 
 
 ## LICENSE
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/SergiFuster/parsdantic/blob/main/LICENSE) file for details.
