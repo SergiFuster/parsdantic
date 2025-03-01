@@ -1,7 +1,7 @@
 [project]
 name = "parsdantic"
-version = "0.1.5"
-description = "Parsdantic is a powerful Python package that automatically generates Pydantic models from JSON schemas."
+version = "0.2.0"
+description = "Parsdantic is a powerful Python package that automatically generates Pydantic models from JSON schemas. Enums support **included**"
 readme = "README.md"
 authors = [
     { name = "SergiFuster", email = "sergifusterdura@gmail.com" }
